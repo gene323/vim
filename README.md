@@ -1,2 +1,2 @@
 # vim
-<img width="421" alt="image" src="vim.png"/>
+<img width="421" alt="image" src="vi.png"/>
