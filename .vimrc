@@ -1,6 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -13,6 +12,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'valloric/youcompleteme'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -30,7 +30,11 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 
-
+"nerdTree"
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 
 "indentguides"
@@ -46,11 +50,11 @@ map <C-A> :call CompileRunGcc()<CR>
 function! CompileRunGcc()
     exec "w"
     if &filetype == 'c'
-        exec "! gcc -o %< %"
-        exec "! ./%<"
+        exec "! gcc -o %<.out %"
+        exec "! ./%<.out"
     elseif &filetype == 'cpp'
-        exec "! g++ -o %< %"
-        exec "! ./%<"
+        exec "! g++ -o %<.out %"
+        exec "! ./%<.out"
     elseif &filetype == 'python'
         exec "!python3 %"
     endif
@@ -74,10 +78,9 @@ set expandtab
 set softtabstop=4
 set hlsearch incsearch
 set cindent
-set cmdheight=2
+set cmdheight=1
 set laststatus=2
-set linebreak
-set background=dark
+"set linebreak"
 set relativenumber
 set showcmd
 
@@ -87,8 +90,8 @@ inoremap ( ()<Esc>i
 inoremap {<CR> {<CR>}<Esc>ko
 inoremap {{ {}<Esc>i
 inoremap [ []<Esc>i
-inoremap " ""<Esc>i
-inoremap ' ''<Esc>i
+"inoremap " ""<Esc>i
+"inoremap ' ''<Esc>i
 inoremap ) <c-r>=ClosePair(')')<CR>
 inoremap } <c-r>=ClosePair('}')<CR>
 inoremap ] <c-r>=ClosePair(']')<CR>
