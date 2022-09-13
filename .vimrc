@@ -57,6 +57,8 @@ function! CompileRunGcc()
         exec "! ./%<.out"
     elseif &filetype == 'python'
         exec "!python3 %"
+    elseif &filetype == 'java'
+        exec "!java %"
     endif
 endfunction
 
@@ -83,6 +85,7 @@ set laststatus=2
 "set linebreak"
 set relativenumber
 set showcmd
+set mouse=a
 
 hi LinNr ctermfg=green
 
