@@ -13,6 +13,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'valloric/youcompleteme'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -46,8 +47,8 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 1
 
 "ctrl + a auto compile "
-map <C-A> :call CompileRunGcc()<CR>
-function! CompileRunGcc()
+map <C-A> :call CompileRun()<CR>
+function! CompileRun()
     exec "w"
     if &filetype == 'c'
         exec "! gcc -o %<.out %"
@@ -86,15 +87,22 @@ set laststatus=2
 set relativenumber
 set showcmd
 set mouse=a
-
 hi LinNr ctermfg=green
 
 inoremap ( ()<Esc>i
 inoremap {<CR> {<CR>}<Esc>ko
 inoremap {{ {}<Esc>i
 inoremap [ []<Esc>i
-"inoremap " ""<Esc>i
-"inoremap ' ''<Esc>i
+inoremap " <c-r>=QuotePair('"')<CR>
+inoremap ' <c-r>=Quotepair(''')<CR>
+function! QuotePair(char)
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char . a:char . "\<Esc>i"
+    endif
+endfunction
+
 inoremap ) <c-r>=ClosePair(')')<CR>
 inoremap } <c-r>=ClosePair('}')<CR>
 inoremap ] <c-r>=ClosePair(']')<CR>
