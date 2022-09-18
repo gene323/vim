@@ -94,7 +94,6 @@ inoremap {<CR> {<CR>}<Esc>ko
 inoremap {{ {}<Esc>i
 inoremap [ []<Esc>i
 inoremap " <c-r>=QuotePair('"')<CR>
-inoremap ' <c-r>=Quotepair(''')<CR>
 function! QuotePair(char)
     if getline('.')[col('.') - 1] == a:char
         return "\<Right>"
